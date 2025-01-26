@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug Solution</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text is initially visible.
+  </div>
+  <button onclick="myFunction()">Click Me</button>
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDiv").style.display = "none";
+      setTimeout(function() {
+        //Improved solution: Only re-append if it's NOT already a child of the body
+        if (!document.body.contains(document.getElementById("myDiv"))) {
+          document.body.appendChild(document.getElementById("myDiv"));
+        }
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
