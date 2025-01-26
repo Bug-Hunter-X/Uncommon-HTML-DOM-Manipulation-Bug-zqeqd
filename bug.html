@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text is initially visible.
+  </div>
+  <button onclick="myFunction()">Click Me</button>
+
+  <script>
+    function myFunction() {
+      document.getElementById("myDiv").style.display = "none";
+      // Missing crucial part:  Re-add the element to the DOM after a delay
+      setTimeout(function() {
+          //this code will cause error as it attempt to add the same element twice 
+          document.body.appendChild(document.getElementById("myDiv"));
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
